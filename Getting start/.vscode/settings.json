@@ -1,0 +1,15 @@
+{
+  "files.associations": {
+    ".php_cs": "php",
+    ".php_cs.dist": "php",
+    "*.env.development": "env",
+    "*.env.production": "env",
+    "*.env.testing": "env",
+    "*.env.example": "env",
+    "*.env": "env",
+    "*.env.local": "env",
+    "*.env.test": "env",
+    "ostream": "cpp",
+    "iostream": "cpp"
+  }
+}
