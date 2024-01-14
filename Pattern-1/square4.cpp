@@ -9,7 +9,7 @@ int main () {
   while (i <= n) {
     int j = 1;
 
-    while (j <= 0) {
+    while (j <= i) {
       cout << n - j + 1;
       j++;
     }
