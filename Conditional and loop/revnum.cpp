@@ -3,7 +3,7 @@ using namespace std;
 
 int main () {
   int n, currentDigit, rev = 0;
-  bool firstDigit = false;
+  // bool firstDigit = false;
   cin >> n;
 
   if(n == 0) {
@@ -12,11 +12,12 @@ int main () {
   while (n > 0) {
     currentDigit = n % 10;
 
-    if(currentDigit == 0 && !firstDigit) {
-      n /= 10;
-      firstDigit = true;
-      continue;
-    }
+    // if(currentDigit == 0 && !firstDigit) {
+    //   cout << "CD=0 AND FD=TRUE" << endl;
+    //   n /= 10;
+    //   firstDigit = true;
+    //   continue;
+    // }
 
     rev = (rev * 10) + currentDigit;
     n /= 10;
