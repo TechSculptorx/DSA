@@ -2,7 +2,7 @@
 using namespace std;
 
 int binarySearch(int nums[], int left, int right, int target) {
-    // Write Your Code Here
+    // Write Your Code Here 
 
     while (left <= right) {
         int mid = left + (right - left) / 2;
