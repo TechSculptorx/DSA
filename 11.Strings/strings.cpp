@@ -40,10 +40,16 @@ int main () {
     }
 */
 
-    string a = "sishabh";
-    string b = "rishabk";
-    int ans = (a>=b);
-    cout<<ans;
+    // string a = "sishabh";
+    // string b = "rishabk";
+    // int ans = (a>=b);
+    // cout<<ans;
 
-    return 0;
+    // return 0;
+
+     string a = "rishabh";
+    a.pop_back();
+    a.erase(4);
+    cout<<a;
+
 }
