@@ -22,6 +22,14 @@ string getCompressedString(string &input) {
             currentLenght = 1;
         }
     }
+
+    ans += currentChar;
+
+    if (currentLenght != 1) {
+        ans += to_string(currentLenght);
+    }
+
+    return ans;
 }
 
 int main() {
