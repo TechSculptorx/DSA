@@ -17,7 +17,7 @@ bool checkNumber(int input[], int size, int x) {
  }
 
  bool isSmallerChecked = checkNumber(input + 1, size - 1, x);
-return isSmallerChecked;
+ return isSmallerChecked;
 
 }
 
