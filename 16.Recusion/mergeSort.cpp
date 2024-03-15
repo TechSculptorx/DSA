@@ -1,30 +1,24 @@
 #include <iostream>
 using namespace std;
 
-void mergeSort (int arr[], int l, int r) {
-    if (l >= r) {
-        return;
-    }
-
+void merge(int arr[], int l, int r) {
     int mid = (l + r) / 2;
 
-    mergeSort(arr, l, mid);
-    mergeSort(arr, mid + 1, r);
-
+    int *temp = new int[r - l + 1];
     int i = l;
     int j = mid + 1;
     int k = 0;
-    int temp[r - l + 1];
 
     while (i <= mid && j <= r) {
-        if (arr[i] < arr[j]) {
+        if (arr[i] <= arr[j]) {
             temp[k] = arr[i];
             i++;
+            k++;
         } else {
             temp[k] = arr[j];
+            k++;
             j++;
         }
-        k++;
     }
 
     while (i <= mid) {
@@ -39,17 +33,27 @@ void mergeSort (int arr[], int l, int r) {
         k++;
     }
 
-    for (int i = l; i <= r; i++) {
-        arr[i] = temp[i - l];
+    int m = 0;
+
+    while (m < k) {
+        arr[l + m] = temp[m];
+        m++;
+    }
+}
+
+void mergeSort(int arr[], int l, int r) {
+    // Write Your Code Here
+
+    if (l >= r) {
+        return;
     }
 
-    for (int i = 0; i < 6; i++) {
-        cout << arr[i] << " ";
-    }
+    int mid = (l + r) / 2;
 
-    cout << endl;
+    mergeSort(arr, l, mid);
+    mergeSort(arr, mid + 1, r);
 
-    return;
+    merge(arr, l, r);
 }
 
 int main () {
