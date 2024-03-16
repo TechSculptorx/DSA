@@ -6,7 +6,7 @@ int partition(int arr[], int l, int r){
     int count = 0;
 
     for (int i = l + 1; i <= r; i++) {
-        if (arr[i] < arr[l]) {
+        if (arr[i] <= arr[l]) {
             count++;
         }
     }
