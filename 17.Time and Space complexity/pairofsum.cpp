@@ -9,17 +9,18 @@ int pairSum(int A[], int size, int K)
     int j = size-1;
 
     while (i < j) {
-        if (A[i] + A[j] == k) {
+        if (A[i] + A[j] == K) {
             ans++;
             i++;
             j--;;
-        } else if (A[i] + A[j] < k) {
+        } else if (A[i] + A[j] < K) {
             i++;
         } else {
             j--;
         }
     }
 
+    return ans;
 }
 
 int main()

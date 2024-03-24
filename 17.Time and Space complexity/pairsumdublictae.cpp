@@ -60,14 +60,42 @@ int pairSum(int *arr, int n, int num)
 	//Write your code here
     mergeSort(arr, 0, n-1);
 
-    cout << "Sorted array: ";
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+    int i = 0;
+    int j = n-1;
+    int count = 0;
+
+    while (i < j) {
+        if (arr[i] + arr[j] == num) {
+            if (arr[i] == arr[j]) {
+                int x = j - i + 1;
+                count += (x * (x - 1)) / 2;
+                break;
+            }
+
+            int x = 1;
+            int y = 1;
+
+            while (arr[i] == arr[i+1]) {
+                x++;
+                i++;
+            }
+
+            while (arr[j] == arr[j-1]) {
+                y++;
+                j--;
+            }
+
+            count += x * y;
+            i++;
+            j--;
+        } else if (arr[i] + arr[j] < num) {
+            i++;
+        } else {
+            j--;
+        }
     }
 
-    cout << endl;
-
-    return 0;
+    return count;
 }
 
 int main()
