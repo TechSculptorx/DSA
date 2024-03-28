@@ -7,6 +7,7 @@
         "*.env": "env",
         "*.env.local": "env",
         "*.env.test": "env",
-        "string": "cpp"
+        "string": "cpp",
+        "ostream": "cpp"
     }
 }
