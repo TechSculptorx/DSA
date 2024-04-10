@@ -25,10 +25,8 @@ int findNode(Node *head, int n){
     int ans = findNode(head->next, n);
     if (ans == -1) {
         return -1;
-
     } else {
         return ans + 1;
-
     }
 }
 

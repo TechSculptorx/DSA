@@ -14,32 +14,23 @@ public:
 
 using namespace std;
 
-void printReverse(Node *head)
+Node *midPoint(Node *head)
 {
-    //Write your code here
+    // Write your code here
+
     if (head == NULL) {
-        return;
+        return head;
     }
 
-    printReverse(head->next);
-    cout << head->data << " ";
+    Node *slow = head;
+    Node *fast = head -> next;
 
-    return;
+    while (fast != NULL && fast -> next != NULL) {
+        slow = slow -> next;
+        fast = fast -> next -> next;
+    }
 
-    // rev linked list
-    // if (head == NULL || head -> next == NULL) {
-    //     return head;
-    // }
-
-    // Node *smallHead = printReverse(head -> next);
-
-    // Node *temp = smallHead;
-    // while (temp -> next != NULL) {
-    //     temp = temp -> next;
-    // }
-    // temp -> next = head;
-    // head -> next = NULL;
-    // return smallHead;
+    return slow;
 }
 
 Node *takeinput()
@@ -72,7 +63,11 @@ int main()
 	while (t--)
 	{
 		Node *head = takeinput();
-		printReverse(head);
+		Node *mid = midPoint(head);
+		if (mid != NULL)
+		{
+			cout << mid->data;
+		}
 		cout << endl;
 	}
 	return 0;
