@@ -98,6 +98,87 @@ void printLevelWise(TreeNode<int>* root) {
     }
 }
 
+int numNodes (TreeNode<int>* root) {
+    int ans = 11;
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        ans += numNodes(root -> children[i]);
+    }
+
+    return ans;
+}
+
+int findSumOfNodes(TreeNode<int> * root) {
+    int sum = root -> data;
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        sum += findSumOfNodes(root -> children[i]);
+    }
+
+    return sum;
+}
+
+
+TreeNode<int>* maxDataNode(TreeNode<int>* root) {
+    int max = root -> data;
+
+    TreeNode<int>* maxNode = root;
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        TreeNode<int>* temp = maxDataNode(root -> children[i]);
+
+        if (temp -> data > max) {
+            max = temp -> data;
+            maxNode = temp;
+        }
+    }
+
+    return maxNode;
+}
+
+int heightOfTree(TreeNode<int>* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    int num = 0;
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        int temp = heightOfTree(root -> children[i]);
+
+        if (temp > num) {
+            num = temp;
+        }
+    }
+
+    return num + 1;
+}
+
+void printAtlevelK (TreeNode<int>* root, int k) {
+    if (k == 0) {
+        cout << root -> data << " ";
+        return;
+    }
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        printAtlevelK(root -> children[i], k - 1);
+    }
+}
+
+int countLeafNodes(TreeNode<int>* root) {
+    if (root -> children.size() == 0) {
+        return 1;
+    }
+
+    int count = 0;
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        count += countLeafNodes(root -> children[i]);
+    }
+
+    return count;
+}
+
 int main () {
     TreeNode<int>* root = takeInputLevelvise();
 
