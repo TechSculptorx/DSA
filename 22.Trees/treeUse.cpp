@@ -99,7 +99,7 @@ void printLevelWise(TreeNode<int>* root) {
 }
 
 int numNodes (TreeNode<int>* root) {
-    int ans = 11;
+    int ans = 1;
 
     for (int i = 0; i < root -> children.size(); i++) {
         ans += numNodes(root -> children[i]);
@@ -179,8 +179,44 @@ int countLeafNodes(TreeNode<int>* root) {
     return count;
 }
 
+void preorder(TreeNode<int>* root) {
+    if (root == NULL) {
+        return;
+    }
+
+    cout << root -> data << " ";
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        preorder(root -> children[i]);
+    }
+}
+
+void postorder(TreeNode<int>* root) {
+    if (root == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < root -> children.size(); i++) {
+        postorder(root -> children[i]);
+    }
+
+    cout << root -> data << " ";
+}
+
+void deleteTree(TreeNode<int>* root) {
+    for (int i = 0; i < root -> children.size(); i++) {
+        deleteTree(root -> children[i]);
+    }
+
+    delete root;
+}
+
 int main () {
     TreeNode<int>* root = takeInputLevelvise();
 
     printLevelWise(root);
+
+    // Deleting the tree
+    // deleteTree(root);
+    delete root;
 }
