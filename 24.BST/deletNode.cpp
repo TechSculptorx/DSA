@@ -24,7 +24,37 @@ using namespace std;
 BinaryTreeNode<int>* deleteNode(BinaryTreeNode<int>* root, int key) {
     // Write your code here.
 
+    if (root == NULL)
+    {
+        return NULL;
+    }
 
+    if (root -> data < key) {
+        root -> right = deleteNode(root -> right, key);
+        return root;
+    }
+    else if (root -> data > key) {
+        root -> left = deleteNode(root -> left, key);
+        return root;
+    }
+
+    if (root -> left == NULL) {
+        BinaryTreeNode<int> *temp = root -> right;
+        delete root;
+        return temp;
+    } else if (root -> right == NULL) {
+        BinaryTreeNode<int> *temp = root -> left;
+        delete root;
+        return temp;
+    } else {
+        BinaryTreeNode<int> *minNode = root -> right;
+        while (minNode -> left != NULL) {
+            minNode = minNode -> left;
+        }
+        root -> data = minNode -> data;
+        root -> right = deleteNode(root -> right, minNode -> data);
+        return root;
+    }
 }
 
 
