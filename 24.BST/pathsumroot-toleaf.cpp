@@ -13,44 +13,42 @@ class BinaryTreeNode {
         left = NULL;
         right = NULL;
     }
+
+    ~BinaryTreeNode() {
+        if (left) delete left;
+        if (right) delete right;
+    }
 };
 
 using namespace std;
 
-#include<vector>
-#include<algorithm>
-void pairSumHelper(BinaryTreeNode<int> *root, vector<int> *v){
+void rootToLeafPathsSum(BinaryTreeNode<int> *root , int k , string s){
     if(root == NULL)
         return;
-    v -> push_back(root -> data);
-    pairSumHelper(root -> left, v);
-    pairSumHelper(root -> right, v);
-}
-
-void pairSum(BinaryTreeNode<int> *root, int sum){
-    if(root == NULL)
-        return;
-    vector<int> *v = new vector<int>();
-    pairSumHelper(root, v);
-    sort(v -> begin(), v -> end());
-    int i = 0;
-    int j = v -> size() - 1;
-    while(i < j){
-        if(v -> at(i) + v -> at(j) == sum){
-            cout << v -> at(i) << " " << v -> at(j) << endl;
-            i++;
-            j--;
-        } else if(v -> at(i) + v -> at(j) > sum){
-            j--;
-        } else if(v -> at(i) + v -> at(j) < sum){
-            i++;
+    if(root -> left == NULL && root -> right == NULL){
+        if(root -> data == k){
+            string toAdded = to_string(root -> data);
+            string newStr = s + toAdded + " ";
+            cout << newStr << endl;
         }
     }
-    v -> clear();  // deallocate dynamic vector
+
+    string toAdded = to_string(root -> data);
+    string newStr = s + toAdded + " ";
+    rootToLeafPathsSum(root -> left, k - root -> data, newStr);
+    rootToLeafPathsSum(root -> right, k - root -> data, newStr);
+}
+
+
+void rootToLeafPathsSumToK(BinaryTreeNode<int> *root, int k) {
+    // Write your code here
+    string s = "";
+    rootToLeafPathsSum(root, k, s);
 }
 
 BinaryTreeNode<int>* takeInput() {
     int rootData;
+
     cin >> rootData;
     if (rootData == -1) {
         return NULL;
@@ -83,8 +81,8 @@ BinaryTreeNode<int>* takeInput() {
 
 int main() {
     BinaryTreeNode<int>* root = takeInput();
-    int sum;
-    cin >> sum;
-    pairSum(root, sum);
+    int k;
+    cin >> k;
+    rootToLeafPathsSumToK(root, k);
     delete root;
 }

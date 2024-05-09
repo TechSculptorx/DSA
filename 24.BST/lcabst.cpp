@@ -13,44 +13,37 @@ class BinaryTreeNode {
         left = NULL;
         right = NULL;
     }
+    ~BinaryTreeNode() {
+        if (left) delete left;
+        if (right) delete right;
+    }
 };
 
 using namespace std;
 
-#include<vector>
-#include<algorithm>
-void pairSumHelper(BinaryTreeNode<int> *root, vector<int> *v){
-    if(root == NULL)
-        return;
-    v -> push_back(root -> data);
-    pairSumHelper(root -> left, v);
-    pairSumHelper(root -> right, v);
-}
+int getLCA(BinaryTreeNode<int>* root , int val1 , int val2){
+    // Write your code here
+	if (root == NULL)
+        return -1;
+    if (root->data == val1 || root->data == val2)
+        return root->data;
 
-void pairSum(BinaryTreeNode<int> *root, int sum){
-    if(root == NULL)
-        return;
-    vector<int> *v = new vector<int>();
-    pairSumHelper(root, v);
-    sort(v -> begin(), v -> end());
-    int i = 0;
-    int j = v -> size() - 1;
-    while(i < j){
-        if(v -> at(i) + v -> at(j) == sum){
-            cout << v -> at(i) << " " << v -> at(j) << endl;
-            i++;
-            j--;
-        } else if(v -> at(i) + v -> at(j) > sum){
-            j--;
-        } else if(v -> at(i) + v -> at(j) < sum){
-            i++;
-        }
-    }
-    v -> clear();  // deallocate dynamic vector
+    int left = getLCA(root->left, val1, val2);
+    int right = getLCA(root->right, val1, val2);
+
+    if (left == -1 && right == -1)
+        return -1;
+    else if (left != -1 && right == -1)
+        return left;
+    else if (left == -1 && right != -1)
+        return right;
+    else
+        return root->data;
 }
 
 BinaryTreeNode<int>* takeInput() {
     int rootData;
+
     cin >> rootData;
     if (rootData == -1) {
         return NULL;
@@ -78,13 +71,14 @@ BinaryTreeNode<int>* takeInput() {
             q.push(rightNode);
         }
     }
+
     return root;
 }
 
 int main() {
     BinaryTreeNode<int>* root = takeInput();
-    int sum;
-    cin >> sum;
-    pairSum(root, sum);
+    int a, b;
+    cin >> a >> b;
+    cout << getLCA(root, a, b);
     delete root;
 }
