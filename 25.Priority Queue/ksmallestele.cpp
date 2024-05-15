@@ -5,6 +5,12 @@ using namespace std;
 
 vector<int> kSmallest(int arr[], int n, int k) {
     // Write your code here
+    vector<int> output;
+    sort(arr, arr+n);
+    for(int i=0; i<k; i++){
+        output.push_back(arr[i]);
+    }
+    return output;
 }
 
 int main() {
