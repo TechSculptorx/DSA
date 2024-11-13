@@ -13,16 +13,18 @@ vector<int> getSecondOrderElements(int n, vector<int> a) {
         if (a[i] < small) {
             secondSmall = small;
             small = a[i];
-        } else if (a[i] < secondSmall && a[i] != small) {
-            secondSmall = a[i];
         }
+        // else if (a[i] < secondSmall && a[i] != small) {
+        //     secondSmall = a[i];
+        // }
 
         if (a[i] > large) {
             secondLarge = large;
             large = a[i];
-        } else if (a[i] > secondLarge && a[i] != large) {
-            secondLarge = a[i];
         }
+        // else if (a[i] > secondLarge && a[i] != large) {
+        //     secondLarge = a[i];
+        // }
     }
 
     vector<int> result;
