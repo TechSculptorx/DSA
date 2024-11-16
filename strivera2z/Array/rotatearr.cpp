@@ -34,7 +34,6 @@ public:
                     nums[i] = temp[i];
                 }
             } else {
-
                 temp.push_back(nums[nums.size() - 1]);
 
                 for (int i = 0; i < nums.size(); i++) {
